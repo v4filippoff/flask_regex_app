@@ -1,0 +1,11 @@
+.main {
+    max-width: 800px;
+}
+
+.navbar-item {
+    margin-left: 20px;
+}
+
+.copy-regex {
+    text-decoration: none;
+}
