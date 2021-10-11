@@ -1,8 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-from .config import Config
-from .accounts.blueprint import accounts
+from config import Config
 
 
 app = Flask(__name__)
@@ -10,6 +9,7 @@ app.config.from_object(Config)
 
 db = SQLAlchemy(app)
 
+from accounts.blueprint import accounts
 app.register_blueprint(accounts, url_prefix='/accounts')
 
-from . import views
+import views
