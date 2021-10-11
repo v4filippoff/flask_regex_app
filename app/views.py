@@ -14,8 +14,9 @@ def index():
         regex_string = form.regex_string.data
         test_string = form.test_string.data
 
+        # В ответ на ajax запрос возвращаем json объект с совпадениями
         return {
-            'maches': re.findall(regex_string, test_string),
+            'matches': re.findall(regex_string, test_string),
         }
 
     return render_template('index.html', form=form)
