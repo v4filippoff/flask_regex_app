@@ -7,6 +7,9 @@
 {% block content %}
     <form action="" method="post">
         {% include 'default_form.html' %}
+        <input type="checkbox" id="remember" name="remember">
+        <label for="remember">Remember</label>
+        <br><br>
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
 {% endblock %}

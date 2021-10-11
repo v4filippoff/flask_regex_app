@@ -1,4 +1,3 @@
-from enum import unique
 from app import db
 
 
@@ -6,6 +5,7 @@ class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer(), primary_key=True)
     username = db.Column(db.String(50), nullable=False, unique=True)
+    # пароль хешируется с помощью sha256, поэтому для хранения выделено 64 символа
     password_hash = db.Column(db.String(100), nullable=False)
     regexes = db.relationship('Regex', backref='user')
 
