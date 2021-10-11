@@ -9,3 +9,8 @@
 .copy-regex {
     text-decoration: none;
 }
+
+.greeting_user {
+    font-size: 20px;
+    font-weight: 500;
+}
