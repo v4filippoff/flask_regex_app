@@ -32,3 +32,20 @@ $('.regex-sub-form').submit(function (e) {
         }
     });
 });
+
+$('.save-regex-btn').click(function (e) {
+    let regexString = $('#regex_string').val();
+    let regexParam = '';
+
+    let reservedCharacters = ['!', '#', '$', '&', '(', ')', '*', '+', ',', '/', ':', ';', '=', '?', '@', '[', ']'];
+
+    for (let i = 0; i < regexString.length; i++) {
+        if (reservedCharacters.indexOf(regexString[i]) == -1) {
+            regexParam += regexString[i];
+        } else {
+            regexParam += encodeURIComponent(regexString[i]);
+        }
+    }
+
+    e.target.href += `?regex_string=${regexParam}`;
+});

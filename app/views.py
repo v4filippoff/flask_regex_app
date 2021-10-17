@@ -1,7 +1,9 @@
 import re
 
 from flask import request, render_template
+from flask.helpers import url_for
 from flask_login import login_required, current_user
+from werkzeug.utils import redirect
 
 from app import app, db
 from forms import RegexMatchForm, RegexSubstitutionForm, RegexSaveForm
@@ -46,17 +48,21 @@ def substitution():
     return render_template('substitution.html', form=form)
 
 
-# @app.route('/save_regex/', methods=['GET', 'POST'])
-# @login_required
-# def save_regex():
-#     form = RegexSaveForm()
+@app.route('/save_regex/', methods=['GET', 'POST'])
+@login_required
+def save_regex():
+    regex_string = request.args.get('regex_string')
 
-#     if form.validate_on_submit():
-#         regex_name = form.regex_name.data
-#         regex_content = form.regex_content.data
+    form = RegexSaveForm(regex_content=regex_string)
 
-#         new_regex = Regex(name=regex_name, content=regex_content, user_id=current_user.id)
-#         db.session.add(new_regex)
-#         db.session.commit()
+    if form.validate_on_submit():
+        regex_name = form.regex_name.data
+        regex_content = form.regex_content.data
+
+        new_regex = Regex(name=regex_name, content=regex_content, user_id=current_user.id)
+        db.session.add(new_regex)
+        db.session.commit()
+
+        return redirect(url_for('index'))
     
-#     return render_template('save_regex.html', form=form)
+    return render_template('save_regex.html', form=form)

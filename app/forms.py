@@ -13,5 +13,5 @@ class RegexSubstitutionForm(RegexMatchForm):
 
 
 class RegexSaveForm(FlaskForm):
-    regex_name = StringField('Regex field', validators=[DataRequired(), Length(min=1, max=100)])
+    regex_name = StringField('Regex name', validators=[DataRequired(), Length(min=1, max=100)])
     regex_content = StringField('Regex content', validators=[DataRequired(), Length(min=1, max=1000)])
