@@ -8,8 +8,13 @@ from forms import RegexMatchForm, RegexSubstitutionForm, RegexSaveForm
 from models import Regex
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
+    return render_template('index.html')
+
+
+@app.route('/match/', methods=['GET', 'POST'])
+def match():
     form = RegexMatchForm()
 
     if form.validate_on_submit():
@@ -21,7 +26,7 @@ def index():
             'matches': re.findall(regex_string, test_string),
         }
 
-    return render_template('index.html', form=form)
+    return render_template('match.html', form=form)
 
 
 @app.route('/substitution/', methods=['GET', 'POST'])

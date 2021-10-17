@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Regex matches
+{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">Regex matches</h2>
+    <form action="" method="post" class="regex-matches-form">
+        {% include 'default_form.html' %}
+        <button type="submit" class="btn btn-primary">Result</button>
+    </form>
+    <h3 class="mt-4">Matches:</h3>
+{% endblock %}

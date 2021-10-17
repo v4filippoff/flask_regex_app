@@ -21,10 +21,9 @@ def login():
 
         if user and check_password_hash(user.password_hash, password):
             login_user(user)
-            return redirect(url_for('index'))
+            return redirect(url_for('match'))
         else:
             flash('Incorrect login or password')
-            return redirect(url_for('accounts.login'))
 
     return render_template('login.html', form=form)
 
@@ -47,7 +46,6 @@ def signup():
             return redirect(url_for('accounts.login'))
         else:
             flash('The user already exists or password and password confirmation don\'t match')
-            return redirect(url_for('accounts.signup'))
 
     return render_template('signup.html', form=form)
 
@@ -56,4 +54,4 @@ def signup():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('match'))
