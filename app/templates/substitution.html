@@ -5,10 +5,11 @@
 {% endblock %}
 
 {% block content %}
-    <h2 class="mb-4">Regex substitution</h2>
-    <form action="" method="post" class="regex-sub-form">
-        {% include 'default_form.html' %}
-        <button type="submit" class="btn btn-primary">Result</button>
-    </form>
-    <h3 class="mt-4">Sub result:</h3>
+
+    {% with action_header="Regex substitution", action_class="regex-sub-form", action_result_text="Sub result" %}
+
+        {% include "includes/regex_action.html" %}
+
+    {% endwith %}
+
 {% endblock %}

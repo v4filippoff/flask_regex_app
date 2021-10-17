@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block content %}
-    <h2 class="mb-4">Regex matches</h2>
-    <form action="" method="post" class="regex-matches-form">
-        {% include 'default_form.html' %}
-        <button type="submit" class="btn btn-primary">Result</button>
-        <a href="{{ url_for('save_regex') }}" class="save-regex-btn btn btn-secondary">Save regex</a>
-    </form>
-    <h3 class="mt-4">Matches:</h3>
+
+    {% with action_header="Regex matches", action_class="regex-matches-form", action_result_text="Matches" %}
+
+        {% include "includes/regex_action.html" %}
+        
+    {% endwith %}
+
 {% endblock %}

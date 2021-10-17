@@ -1,9 +1,7 @@
 import re
 
-from flask import request, render_template
-from flask.helpers import url_for
+from flask import request, render_template, redirect, url_for
 from flask_login import login_required, current_user
-from werkzeug.utils import redirect
 
 from app import app, db
 from forms import RegexMatchForm, RegexSubstitutionForm, RegexSaveForm

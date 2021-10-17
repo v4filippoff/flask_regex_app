@@ -1,0 +1,7 @@
+<h2 class="mb-4">{{ action_header }}</h2>
+    <form action="" method="post" class="{{ action_class }}">
+        {% include 'includes/default_form.html' %}
+        <button type="submit" class="btn btn-primary">Result</button>
+        <a href="{{ url_for('save_regex') }}" class="save-regex-btn btn btn-secondary">Save regex</a>
+    </form>
+<h3 class="mt-4">{{ action_result_text }}:</h3>
