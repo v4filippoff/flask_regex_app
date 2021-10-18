@@ -1,11 +1,11 @@
 import re
 
-from flask import request, render_template, redirect, url_for
+from flask import request, render_template, redirect, url_for, abort
 from flask_login import login_required, current_user
 
 from app import app, db
 from forms import RegexMatchForm, RegexSubstitutionForm, RegexSaveForm
-from models import Regex
+from models import Regex, User
 
 
 @app.route('/')
@@ -64,3 +64,18 @@ def save_regex():
         return redirect(url_for('index'))
     
     return render_template('save_regex.html', form=form)
+
+
+@app.route('/profile/<username>/')
+def profile(username):
+    user = User.query.filter_by(username=username).first()
+
+    if user:
+        return render_template('profile.html', user=user)
+    else:
+        abort(404)
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html')

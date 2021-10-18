@@ -11,11 +11,17 @@
 }
 
 .greeting_user {
-    margin-left: 750px;
+    margin-left: 650px;
     font-size: 20px;
     font-weight: 500;
 }
 
 .welcome-block {
     text-align: center;
+}
+
+.regex-content {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgb(227, 233, 238);
 }

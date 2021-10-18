@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    User: {{ user.username }}
+{% endblock %}
+
+{% block content %}
+    <h1>User: {{ user.username }}</h1>
+    <hr>
+
+    <div class="user-regexes">
+        {% for regex in user.regexes %}
+            <div class="regex-block mt-4 row">
+                <div class="col-2">
+                    <b>{{ regex.name }}</b>:
+                </div>
+                <div class="col regex-content">
+                    {{ regex.content }}
+                </div>
+            </div>
+        {% else %}
+            No content
+        {% endfor %}
+    </div>
+{% endblock %}
