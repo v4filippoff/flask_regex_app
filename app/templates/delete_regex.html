@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Delete regex: {{ regex.name }}
+{% endblock %}
+
+{% block content %}
+
+    <form action="" method="post">
+        <h2 class="mt-4">Are you sure you want to delete "{{ regex.name }}" regex?</h2>
+        <div class="mt-4" style="text-align: center;">
+            <a href="{{ url_for('profile', username=current_user.username) }}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </div>
+    </form>
+
+{% endblock %}

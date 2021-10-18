@@ -61,7 +61,7 @@ def save_regex():
         db.session.add(new_regex)
         db.session.commit()
 
-        return redirect(url_for('index'))
+        return redirect(url_for('profile', username=current_user.username))
     
     return render_template('save_regex.html', form=form)
 
@@ -76,6 +76,30 @@ def profile(username):
         abort(404)
 
 
+@app.route('/delete_regex/<int:regex_id>/', methods=['GET', 'POST'])
+@login_required
+def delete_regex(regex_id):
+    regex = Regex.query.filter_by(id=regex_id).first()
+
+    if not regex:
+        abort(404)
+        
+    if regex.user_id == current_user.id:
+        if request.method == 'POST':
+            db.session.delete(regex)
+            db.session.commit()
+            return redirect(url_for('profile', username=current_user.username))
+        else:
+            return render_template('delete_regex.html', regex=regex)
+    else:
+        abort(403)
+
+
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html')
+
+
+@app.errorhandler(403)
+def forbidden(error):
+    return render_template('403.html')
