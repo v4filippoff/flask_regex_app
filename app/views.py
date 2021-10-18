@@ -83,7 +83,7 @@ def delete_regex(regex_id):
 
     if not regex:
         abort(404)
-        
+
     if regex.user_id == current_user.id:
         if request.method == 'POST':
             db.session.delete(regex)
@@ -91,6 +91,28 @@ def delete_regex(regex_id):
             return redirect(url_for('profile', username=current_user.username))
         else:
             return render_template('delete_regex.html', regex=regex)
+    else:
+        abort(403)
+
+
+@app.route('/edit_regex/<int:regex_id>/', methods=['GET', 'POST'])
+def edit_regex(regex_id):
+    regex = Regex.query.filter_by(id=regex_id).first()
+
+    if not regex:
+        abort(404)
+
+    if regex.user_id == current_user.id:
+        form = RegexSaveForm(regex_name=regex.name, regex_content=regex.content)
+
+        if form.validate_on_submit():
+            regex.name = form.regex_name.data
+            regex.content = form.regex_content.data 
+            db.session.commit()
+
+            return redirect(url_for('profile', username=current_user.username))
+
+        return render_template('edit_regex.html', form=form)
     else:
         abort(403)
 
