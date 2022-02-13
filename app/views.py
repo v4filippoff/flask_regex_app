@@ -3,7 +3,8 @@ import re
 from flask import request, render_template, redirect, url_for, abort
 from flask_login import login_required, current_user
 
-from app import app, db
+from app import app
+from database import db
 from forms import RegexMatchForm, RegexSubstitutionForm, RegexSaveForm
 from models import Regex, User
 
